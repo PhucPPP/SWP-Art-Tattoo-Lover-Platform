@@ -192,6 +192,12 @@ body {
 .studio-detail .content-infor p:last-child {
     color: #FFA800;
 }
+.content{
+    font-weight: bold;
+}
+.star{
+    color: #FFA800;
+}
 
 .studio-detail .description {
     font-size: 20px;
@@ -440,3 +446,68 @@ body {
     font-size: 50px;
     margin-left: 20px;
 }
+/* slider */
+.direction{
+    text-align: center;
+}
+.direction button{
+    font-weight: bold;
+    background-color: #FFA800;
+    border:none;
+    width:50px;
+    height:50px;
+    border-radius: 50%;
+    transition: 0.5s;
+    margin:0 10px;
+}
+.direction button:hover{
+    background-color: #ffffff;
+}
+.item{
+    border-radius: 15px;
+    width:300px;
+    height:250px;
+    background-image: linear-gradient(to top, #ffaa00a9, #ffffff);
+    overflow: hidden;
+    transition: 0.5s;
+    margin:10px;
+    scroll-snap-align: start;
+}
+
+.item .content{
+    padding:30px;
+}
+
+
+#list{
+    display: flex;
+    width:max-content;
+}
+#rateList{
+    width:1280px;
+    max-width: 100%;
+    overflow: auto;
+    margin:40px auto 40px;
+    scroll-behavior: smooth;
+    scroll-snap-type: both;
+}
+#rateList::-webkit-scrollbar{
+    display: none;
+}
+@media screen and (max-width: 1024px){
+    .item{
+        width: calc(33.3vw - 20px);
+    }
+    .direction{
+        display: none;
+    }
+}
+@media screen and (max-width: 768px){
+    .item{
+        width: calc(50vw - 20px);
+    }
+    .direction{
+        display: none;
+    }
+}
+  
