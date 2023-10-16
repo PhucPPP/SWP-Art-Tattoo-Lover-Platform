@@ -31,7 +31,7 @@ create Table [Studio](
 studioID nvarchar(15) Primary Key,
 managerID nvarchar(15) foreign key references [User](userID),
 studioName nvarchar(50) not Null,
-studioAdress nvarchar(200) not Null,
+studioAddress nvarchar(200) not Null,
 city nvarchar(15) not Null,
 district nvarchar(15) not Null,
 studioPhoneNumber nvarchar(15) not Null Unique,
