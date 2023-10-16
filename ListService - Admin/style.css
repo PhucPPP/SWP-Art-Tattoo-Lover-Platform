@@ -171,6 +171,7 @@ body {
 .update{
     width: 100%;
     text-align: center;
+    margin-top: 20px;
 }
 .search-bar {
   width: 100%;
@@ -213,19 +214,25 @@ body {
     background-color: transparent;
 }
 .table-service{
-    width: 700px;
-    margin: 0 auto;
-    margin-top: 10px;
+  margin: 0 auto;
+  margin-top: 10px;
+  text-align: center;
+  font-family: Quicksand;
+  
 }
 thead{
-    background-color: #ECF2F9;
+  background-color: #ECF2F9;
+  width: fit-content;
 }
-td{
-    border: #000;
-    width: fit-content;
-    height: 50px;
-    padding: 0px 0px;
-    text-align: center;
+th{
+width: fit-content;
+}
+.input{
+  border: #000;
+  padding: 0px 0px;
+  text-align: center;
+  font-family: Quicksand;
+  width: 150px;
 }
 .del-btn{
     background-color: transparent;
