@@ -200,6 +200,7 @@ body {
     line-height: normal;
     background-color: #ECF2F9;
     border:none;
+    margin-top: 20px;
   }
   .search-bar input{
       height: 35px;
