@@ -5,8 +5,14 @@
  */
 package Controller;
 
+import DAO.StudioDAO;
+import DTO.ImgDTO;
+import DTO.ServiceSizeDTO;
+import DTO.StudioDTO;
+import DTO.StudioServiceDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ASUS
  */
-public class MainController extends HttpServlet {
+public class ViewStudioInforController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -27,43 +33,43 @@ public class MainController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private static final String HOME_PAGE = "homeTL.jsp";
-    private static final String GETSTUINFOR = "getStuInfor";
-    private static final String GETSTUINFOR_CONTROLLER = "GetStuInforController";
-    private static final String SEARCHSTU = "SearchStudio";
-    private static final String SEARCHSTU_CONTROLLER = "SearchStudioController";
-    private static final String VIEWSTUDIO = "ViewStudio";
-    private static final String VIEWSTUDIO_CONTROLLER = "ViewStudioInforController";
-    private static final String SORTSERVICE_STUDIO = "SortServiceStudio";
-    private static final String SORTSERVICE_STUDIO_CONTROLLER = "SortServiceStudioController";
-    private static final String STUDIO_SERVICE = "ViewStudioService";
-    private static final String STUDIO_SERVICE_CONTROLLER = "ViewStudioServiceController";
-    private static final String BOOK = "Book";
-    private static final String BOOK_CONTROLLER = "BookController";
+     private static final String ERROR = "studioInformation.jsp";
+    private static final String SUCCESS = "studioInformation.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = HOME_PAGE;
+        String url = ERROR;
         try {
-            String action = request.getParameter("action");
-            if (action == null) {
-                url = HOME_PAGE;
-            } else if (action.equals(GETSTUINFOR)) {
-                url = GETSTUINFOR_CONTROLLER;
-            } else if (action.equals(SEARCHSTU)) {
-                url = SEARCHSTU_CONTROLLER;
-            } else if (action.equals(VIEWSTUDIO)) {
-                url = VIEWSTUDIO_CONTROLLER;
-            } else if (action.equals(SORTSERVICE_STUDIO)) {
-                url = SORTSERVICE_STUDIO_CONTROLLER;
-            } else if (action.equals(STUDIO_SERVICE)) {
-                url = STUDIO_SERVICE_CONTROLLER;
-            } else if (action.equals(BOOK)) {
-                url = BOOK_CONTROLLER;
-            } 
+            String studioID = request.getParameter("studioID");
+            StudioDTO studio = new StudioDTO();
+            StudioDAO stuDao = new StudioDAO();
+            studio = stuDao.getStuInfor(studioID);
+            if (studio != null) {
+                request.setAttribute("STUDIO", studio);
+                
+                ImgDTO imgAvatar = stuDao.getAvatarStu(studioID);
+                request.setAttribute("IMG_AVATAR", imgAvatar);
+                
+                List<ImgDTO> serviceImageList = stuDao.getServiceImageList(studioID);
+                request.setAttribute("IMG_SERVICE_LIST", serviceImageList);
+                
+                List<StudioServiceDTO> service_list = stuDao.getService(studioID);
+                request.setAttribute("SERVICE_LIST", service_list);
+                
+                List<StudioServiceDTO> service_detail_normal_list = stuDao.getServiceDetailNormal(studioID);
+                request.setAttribute("SERVICE_DETAIL_NORMAL_LIST", service_detail_normal_list);
+                
+                List<StudioServiceDTO> service_detail_color_list = stuDao.getServiceDetailColor(studioID);
+                request.setAttribute("SERVICE_DETAIL_COLOR_LIST", service_detail_color_list);
+                
+                List<ServiceSizeDTO> service_size = stuDao.getServiceSize();
+                request.setAttribute("SERVICE_SIZE_LIST", service_size);
+                
+                url = SUCCESS;
+            }
         } catch (Exception e) {
-            log("Error ar MainController: " + e.toString());
+            log("Error ar ViewStudioInforController: " + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
