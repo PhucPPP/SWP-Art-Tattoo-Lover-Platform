@@ -33,26 +33,31 @@ public class MainController extends HttpServlet {
             String action;
             String URL = "homepage.jsp";
             action = request.getParameter("action");
-            if(action==null||action.isEmpty()){
-                URL = "homepage.jsp";
-            } else if (action.equals("homepage")){
-                URL = "homepage.jsp";
-            } else if (action.equals("login")){
-                URL = "login.jsp";
-            } else if (action.equals("loginservlet")){
-                URL = "LoginServlet";
-            } else if (action.equals("logoutservlet")){
-                URL = "LogOutServlet";
-            } else if (action.equals("signup")){
-                URL = "signup.jsp";
-            } else if (action.equals("signupservlet")){
-                URL = "SignUpServlet";
-            } else if (action.equals("studiosignup")){
-                URL = "studiosignup.jsp";
-            } else if (action.equals("sudiosignupservlet")){
-                URL = "StudioSignUpServlet";
+            try {
+                if (action == null || action.isEmpty()) {
+                    URL = "homepage.jsp";
+                } else if (action.equals("homepage")) {
+                    URL = "homepage.jsp";
+                } else if (action.equals("login")) {
+                    URL = "login.jsp";
+                } else if (action.equals("loginservlet")) {
+                    URL = "LoginServlet";
+                } else if (action.equals("logoutservlet")) {
+                    URL = "LogOutServlet";
+                } else if (action.equals("signup")) {
+                    URL = "signup.jsp";
+                } else if (action.equals("signupservlet")) {
+                    URL = "SignUpServlet";
+                } else if (action.equals("studiosignup")) {
+                    URL = "studiosignup.jsp";
+                } else if (action.equals("sudiosignupservlet")) {
+                    URL = "StudioSignUpServlet";
+                }
+            } catch (Exception e) {
+                log("Error at MainController " + e.toString());
+            } finally {
+                request.getRequestDispatcher(URL).forward(request, response);
             }
-            request.getRequestDispatcher(URL).forward(request, response);
         }
     }
 
