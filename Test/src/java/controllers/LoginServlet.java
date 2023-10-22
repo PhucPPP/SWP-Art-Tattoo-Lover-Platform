@@ -33,48 +33,24 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            out.print("<h1>AAA</h1>");
             String userAccount = request.getParameter("username");
             String password = request.getParameter("password");
-            String msg;
-            String path = "homepage.jsp";
-            User us = new User();
-            us = UserDAO.getUserByUserAccount(userAccount);
-            if(us!=null){
-                if(password.equals(us.getPassword())){
+            User us = UserDAO.getUserByUserAccount(userAccount);
+            String path = "MainController?action=homepage";
+            if (us != null) {
+                if (password.equals(us.getPassword())) {
                     HttpSession session = request.getSession();
                     session.setAttribute("User", us);
-                    switch (us.getRoleId()){
-                        case "Admin" -> {
-                        }
-                        case "SystemStaff" -> {
-                        }
-                        case "StudioManager" -> {
-                        }
-                        case "StudioStaff" -> {
-                        }
-                        case "Artist" -> {
-                        }
-                        case "TL" -> {
-                            path = "MainController?action='homepage'";
-                        }
-                        default -> {
-                        }
+                    if (us.getRoleId().equals("TL")) {
+                        path = "MainController?action=homepage";
                     }
-                    //admin page
-                    //Systemstaff page
-                    //StudioManager page
-                    //Studiostaff page
-                    //Artist page
-                    //TattooLover page
-                    //TattooLover page
-                                    } else {
-                    //Password incorrect
+                } else {
+                    //Username incorrect
                 }
-            } else {
-                //Username incorrect
             }
             request.getRequestDispatcher(path).forward(request, response);
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
