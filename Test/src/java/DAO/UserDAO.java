@@ -37,11 +37,7 @@ public class UserDAO {
                    String email = rs.getString("email");
                    String city = rs.getString("cityID");
                    String district = rs.getString("districtID");
-                   byte status = rs.getByte("status");
-                   boolean thisStatus = true;
-                   if(status==1){
-                       thisStatus = true;
-                   }
+                   boolean thisStatus = rs.getBoolean("status");
                    String studioId = rs.getString("studioID");
                    us = new User(id, thisUserAccount, password, roleId, fullname, birthday, gender, phoneNumber, email, city, district, thisStatus, studioId);
                }
@@ -73,13 +69,9 @@ public class UserDAO {
                    String email = rs.getString("email");
                    String city = rs.getString("city");
                    String district = rs.getString("district");
-                   byte status = rs.getByte("status");
-                   boolean thisStatus = true;
-                   if(status==1){
-                       thisStatus = true;
-                   }
+                   boolean status = rs.getBoolean("status");
                    String studioId = rs.getString("studioID");
-                   us = new User(id, thisUserAccount, password, roleId, fullname, birthday, gender, phoneNumber, email, city, district, thisStatus, studioId);
+                   us = new User(id, thisUserAccount, password, roleId, fullname, birthday, gender, phoneNumber, email, city, district, status, studioId);
                }
            }
            cn.close();
@@ -105,7 +97,7 @@ public class UserDAO {
             pst.setString(9, email);
             pst.setString(10, city);
             pst.setString(11, district);
-            pst.setInt(12, 1);
+            pst.setBoolean(12, true);
             pst.setString(13, studioId);
             pst.executeUpdate();
             cn.close();
