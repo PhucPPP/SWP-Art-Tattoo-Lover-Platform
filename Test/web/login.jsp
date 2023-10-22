@@ -28,7 +28,8 @@
         </div>
         <h2>ĐĂNG NHẬP</h2>
         <div class="container2">
-                <form method="post">
+                <form method="post" action="MainController">
+                    <input type="hidden" name="action" value="loginservlet">
                     <div class="USERNAME">
                         <label for="username" >Tên đăng nhập</label>
                         <input type="text" id="username" name="username" required>
