@@ -50,4 +50,4 @@ jobs:
           app-name: 'TattooLoverPlatformDemo'
           slot-name: 'Production'
           package: '*.war'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_10F4CD14DFA04F6DAFFF796EE2391F9D }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E93C13BFFFB54A40B9CF0EDFE3C5BC34 }}
