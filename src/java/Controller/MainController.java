@@ -149,6 +149,17 @@ public class MainController extends HttpServlet {
     private static final String DELETE_USER_MANAGER_CONTROLLER = "DeleteUserManagerController";
     private static final String DELETE_STAFF_STU = "DeleteStaffStu";
     private static final String DELETE_STAFF_STU_CONTROLLER = "DeleteStaffStuController";
+<<<<<<< HEAD
+    private static final String FORGET_PASSWORD = "ForgetPassword";
+    private static final String FORGET_PASSWORD_PAGE = "ForgetPassword.jsp";
+    private static final String SEND_OTP = "SendOTP";
+    private static final String SEND_OTP_CONTROLLER = "SendOTPController";
+    private static final String CHECK_OTP = "checkOTP";
+    private static final String CHECK_OTP_CONTROLLER= "CheckOTPController";
+    private static final String GET_NEW_PASSWORD = "getNewPassword";
+    private static final String GET_NEW_PASSWORD_CONTROLLER= "GetNewPasswordController";
+=======
+>>>>>>> 46860fd9c8195799510ba7b99c8b013849670722
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -169,16 +180,22 @@ public class MainController extends HttpServlet {
             } else if (action.equals(LOGOUT_SERVLET)) {
                 url = LOGOUT_CONTROLLER;
             } else if (action.equals(SIGNUP)) {
+<<<<<<< HEAD
+=======
                 session.setAttribute("cityList", CityDAO.getCityListStatic());
                 session.setAttribute("HCMDistrictList", DistrictDAO.getDistrictListByCityID("CT001"));
                 session.setAttribute("HNDistrictList", DistrictDAO.getDistrictListByCityID("CT002"));
+>>>>>>> 46860fd9c8195799510ba7b99c8b013849670722
                 url = SIGNUP_PAGE;
             } else if (action.equals(SIGNUP_SERVLET)) {
                 url = SIGN_CONTROLLER;
             } else if (action.equals(STUDIO_SIGNUP)) {
+<<<<<<< HEAD
+=======
                 session.setAttribute("cityList", CityDAO.getCityListStatic());
                 session.setAttribute("HCMDistrictList", DistrictDAO.getDistrictListByCityID("CT001"));
                 session.setAttribute("HNDistrictList", DistrictDAO.getDistrictListByCityID("CT002"));
+>>>>>>> 46860fd9c8195799510ba7b99c8b013849670722
                 url = STUDIO_SIGNUP_PAGE;
             } else if (action.equals(STUDIO_SIGNUP_SERVLET)) {
                 url = STUDIO_SIGNUP_CONTROLLER;
@@ -280,6 +297,17 @@ public class MainController extends HttpServlet {
                 url = DELETE_USER_MANAGER_CONTROLLER;
             } else if (action.equals(DELETE_STAFF_STU)) {
                 url = DELETE_STAFF_STU_CONTROLLER;
+<<<<<<< HEAD
+            } else if(action.equals(FORGET_PASSWORD)){
+               url = FORGET_PASSWORD_PAGE;
+            } else if (action.equals(SEND_OTP)) {
+                url = SEND_OTP_CONTROLLER;
+            } else if (action.equals(CHECK_OTP)){
+                url = CHECK_OTP_CONTROLLER;
+            } else if (action.equals(GET_NEW_PASSWORD)){
+                url = GET_NEW_PASSWORD_CONTROLLER;
+=======
+>>>>>>> 46860fd9c8195799510ba7b99c8b013849670722
             }
         } catch (Exception e) {
             log("Error ar MainController: " + e.toString());

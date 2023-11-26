@@ -57,10 +57,20 @@ public class UserDAO {
             + "AND d.districtID = u.districtID "
             + "AND fullName like ? "
             + "AND u.status = 1";
+<<<<<<< HEAD
+
+    private static final String DELETE_USER = "UPDATE [User] "
+            + "SET [User].status=0"
+            + " WHERE [User].userID=?";
+    private static final String UPDATE_PASSWORD_BY_EMAIL = "UPDATE [User] "
+            + "SET password = ? "
+            + "WHERE email = ?";
+=======
     
     private static final String DELETE_USER = "UPDATE [User] " 
                                                + "SET [User].status=0"
                                                 + " WHERE [User].userID=?";
+>>>>>>> 46860fd9c8195799510ba7b99c8b013849670722
 
     public static UserDTO getUserByUserAccount(String userAccount) throws Exception {
         UserDTO us = null;
@@ -89,7 +99,11 @@ public class UserDAO {
                     if (status == true) {
                         us = new UserDTO(id, thisUserAccount, password, roleId, fullname, birthday, gender, phoneNumber, email, city, district, status, studioId);
                     }
+<<<<<<< HEAD
+
+=======
                     
+>>>>>>> 46860fd9c8195799510ba7b99c8b013849670722
                 }
             }
             cn.close();
@@ -117,8 +131,13 @@ public class UserDAO {
                     String gender = rs.getString("gender");
                     String phoneNumber = rs.getString("phoneNumber");
                     String email = rs.getString("email");
+<<<<<<< HEAD
+                    String city = rs.getString("cityID");
+                    String district = rs.getString("districtID");
+=======
                     String city = rs.getString("city");
                     String district = rs.getString("district");
+>>>>>>> 46860fd9c8195799510ba7b99c8b013849670722
                     byte status = rs.getByte("status");
                     boolean thisStatus = true;
                     if (status == 1) {
@@ -462,9 +481,15 @@ public class UserDAO {
 
         return success;
     }
+<<<<<<< HEAD
+
+    public boolean deleteUser(String userId) throws SQLException {
+        boolean check = false;
+=======
     
     public boolean deleteUser(String userId) throws SQLException {
         boolean check=false;
+>>>>>>> 46860fd9c8195799510ba7b99c8b013849670722
         Connection conn = null;
         PreparedStatement ptm = null;
         ResultSet rs = null;
@@ -491,4 +516,37 @@ public class UserDAO {
         }
     }
 
+<<<<<<< HEAD
+    public boolean updatePasswordByEmail(String email, String password) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(UPDATE_PASSWORD_BY_EMAIL);
+                ptm.setString(1, password);
+                ptm.setString(2, email);
+                check = ptm.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+            return check;
+        }
+    }
+
+   
+=======
+>>>>>>> 46860fd9c8195799510ba7b99c8b013849670722
 }

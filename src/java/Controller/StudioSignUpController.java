@@ -59,6 +59,11 @@ public class StudioSignUpController extends HttpServlet {
             String studioName = request.getParameter("studioName");
             String phoneNumber = request.getParameter("phone");
             String email = request.getParameter("email");
+<<<<<<< HEAD
+            String birthday = request.getParameter("birthDate");
+            String gender = request.getParameter("gender");
+=======
+>>>>>>> 46860fd9c8195799510ba7b99c8b013849670722
             String city = request.getParameter("city");
             String district = request.getParameter("district");
             String address = request.getParameter("address");
@@ -101,8 +106,12 @@ public class StudioSignUpController extends HttpServlet {
                         userID = UserDAO.getRandomUserId(roleID);
                     } while (UserDAO.getUserByUserId(userID) != null);
 
+<<<<<<< HEAD
+                    UserDTO newUser = UserDAO.createUser(userID, username, password, roleID, fullname, birthday, gender, phoneNumber, email, city, district, true, null);
+=======
                     UserDTO newUser = UserDAO.createUser(userID, username, password, roleID, fullname, null, null, phoneNumber, email, city, district, true, null);
                     session.setAttribute("User", newUser);
+>>>>>>> 46860fd9c8195799510ba7b99c8b013849670722
 
                     String studioID = StudioDAO.getNewStudioId();
                     StudioDTO stu = new StudioDTO(studioID, userID, studioName, address, city, district, phoneNumber, email, true, timeStart, timeEnd, null, timePerSlot);
@@ -153,7 +162,12 @@ public class StudioSignUpController extends HttpServlet {
                             }
                         }
                     }
+<<<<<<< HEAD
+                    UserDTO newUser2 = UserDAO.getUserByUserId(userID);
+                    session.setAttribute("User", newUser2);
+=======
 
+>>>>>>> 46860fd9c8195799510ba7b99c8b013849670722
                     url = "HomeController";
                 } else {
                     msg = "Mật khẩu không trùng khớp";
